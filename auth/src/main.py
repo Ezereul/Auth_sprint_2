@@ -5,11 +5,12 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from redis.asyncio import Redis
 
-from src.api.errors import account_exception_handler, authjwt_exception_handler
-from src.api.routers import main_router
-from src.core import logger
-from src.core.config import settings
-from src.db import redis
+from auth.src.api.errors import account_exception_handler, authjwt_exception_handler
+from auth.src.api.middlewares import rate_limit_middleware
+from auth.src.api.routers import main_router
+from auth.src.core import logger
+from auth.src.core.config import settings
+from auth.src.db import redis
 
 
 @asynccontextmanager
@@ -30,6 +31,7 @@ app = FastAPI(
 app.add_exception_handler(AuthJWTException, authjwt_exception_handler)
 app.add_exception_handler(ValueError, account_exception_handler)
 app.include_router(main_router)
+app.middleware("http")(rate_limit_middleware)
 
 
 if __name__ == '__main__':
