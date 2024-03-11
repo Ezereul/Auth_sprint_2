@@ -4,9 +4,9 @@ from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.core.constants import DEFAULT_ROLE_DATA
-from src.models import User
-from src.models.roles import Role
+from auth.src.core.constants import DEFAULT_ROLE_DATA
+from auth.src.models import User
+from auth.src.models.roles import Role
 
 
 class RoleService:

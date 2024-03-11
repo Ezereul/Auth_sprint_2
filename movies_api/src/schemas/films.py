@@ -1,6 +1,6 @@
 from pydantic.main import BaseModel
 
-from src.schemas.genre import GenreSchema
+from movies_api.src.schemas.genre import GenreSchema
 
 
 class PersonForFilm(BaseModel):

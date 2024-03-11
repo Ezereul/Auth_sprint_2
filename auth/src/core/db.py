@@ -4,7 +4,7 @@ from sqlalchemy import UUID, Column
 from sqlalchemy.ext.asyncio import AsyncAttrs, AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import declarative_base, declared_attr
 
-from src.core.config import settings
+from auth.src.core.config import settings
 
 
 class PreBase(AsyncAttrs):

@@ -2,11 +2,11 @@ from functools import lru_cache
 from typing import Optional
 
 from fastapi import Depends
-from src.models import ElasticModel
-from src.schemas import Schema
-from src.services._redis import RedisService, get_redis_service
-from src.services.elastic import ElasticService, get_elastic_service
-from src.utils.kwargs_transformer.transformer import KwargsTransformer, get_kwargs_transformer
+from movies_api.src.models import ElasticModel
+from movies_api.src.schemas import Schema
+from movies_api.src.services._redis import RedisService, get_redis_service
+from movies_api.src.services.elastic import ElasticService, get_elastic_service
+from movies_api.src.utils.kwargs_transformer.transformer import KwargsTransformer, get_kwargs_transformer
 
 
 class BaseService:

@@ -1,12 +1,12 @@
 from functools import lru_cache
 
 from fastapi import Depends
-from src.models.person import Person
-from src.schemas import PersonSchema
-from src.services._redis import RedisService, get_redis_service
-from src.services.base import BaseService
-from src.services.elastic import ElasticService, get_elastic_service
-from src.utils.kwargs_transformer.transformer import KwargsTransformer, get_kwargs_transformer
+from movies_api.src.models.person import Person
+from movies_api.src.schemas import PersonSchema
+from movies_api.src.services._redis import RedisService, get_redis_service
+from movies_api.src.services.base import BaseService
+from movies_api.src.services.elastic import ElasticService, get_elastic_service
+from movies_api.src.utils.kwargs_transformer.transformer import KwargsTransformer, get_kwargs_transformer
 
 
 class PersonsService(BaseService):

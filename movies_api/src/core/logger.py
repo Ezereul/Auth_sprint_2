@@ -1,6 +1,6 @@
 from logging import config
 
-from src.core.api_settings import settings
+from movies_api.src.core.api_settings import settings
 
 LOGGING = {
     'version': 1,

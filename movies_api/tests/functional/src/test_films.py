@@ -4,8 +4,8 @@ Group of tests for checking /api/v1/films/ endpoint.
 import pytest
 from http import HTTPStatus
 
-from tests.functional import movies_test_settings
-from tests.functional.testdata.elasticsearch_input import es_films_search_data, es_single_film  # noqa: F401
+from movies_api.tests.functional import movies_test_settings
+from movies_api.tests.functional.testdata.elasticsearch_input import es_films_search_data, es_single_film  # noqa: F401
 
 
 @pytest.mark.asyncio

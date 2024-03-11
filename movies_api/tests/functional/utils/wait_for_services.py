@@ -4,7 +4,7 @@ import backoff
 from elasticsearch import AsyncElasticsearch
 from redis.asyncio import Redis
 
-from auth.tests.functional.settings import test_base_settings
+from movies_api.tests.functional.settings import test_base_settings
 
 
 @backoff.on_exception(backoff.expo, Exception, max_time=300, max_tries=10)

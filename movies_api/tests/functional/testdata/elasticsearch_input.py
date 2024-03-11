@@ -4,7 +4,7 @@ from typing import Iterable
 import pytest
 import pytest_asyncio
 
-from tests.functional.utils.generate import generate_film_data
+from movies_api.tests.functional.utils.generate import generate_film_data
 
 
 @pytest_asyncio.fixture(name='es_single_film')

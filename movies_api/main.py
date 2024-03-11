@@ -6,10 +6,10 @@ from fastapi_pagination import add_pagination
 from redis.asyncio import Redis
 import logging
 
-from src.core.logger import setup_logging
-from auth.src.api.v1 import films, genres, persons
-from src.core.api_settings import settings
-from src.db import _redis, elastic
+from movies_api.src.core.logger import setup_logging
+from movies_api.src.api.v1 import films, genres, persons
+from movies_api.src.core.api_settings import settings
+from movies_api.src.db import _redis, elastic
 
 
 setup_logging()

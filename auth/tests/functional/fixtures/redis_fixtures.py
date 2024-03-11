@@ -2,8 +2,8 @@ import fakeredis
 import pytest
 import pytest_asyncio
 
-from src.db.redis import get_redis
-from src.main import app
+from auth.src.db.redis import get_redis
+from auth.src.main import app
 
 
 @pytest_asyncio.fixture

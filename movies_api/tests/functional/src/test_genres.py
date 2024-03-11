@@ -4,8 +4,8 @@ Group of tests for checking /api/v1/genres/ endpoint.
 import pytest
 from http import HTTPStatus
 
-from tests.functional import genres_test_settings
-from tests.functional.testdata.elasticsearch_input import es_list_genres, es_single_genre  # noqa: F401
+from movies_api.tests.functional import genres_test_settings
+from movies_api.tests.functional.testdata.elasticsearch_input import es_list_genres, es_single_genre  # noqa: F401
 
 
 @pytest.mark.asyncio

@@ -2,8 +2,8 @@ from http import HTTPStatus
 import pytest
 from redis.asyncio.client import Redis
 
-from auth.tests.functional.settings import persons_test_settings
-from tests.functional.testdata.elasticsearch_input import (  # type: ignore # isort: skip
+from movies_api.tests.functional.settings import persons_test_settings
+from movies_api.tests.functional.testdata.elasticsearch_input import (  # type: ignore # isort: skip
     es_person_with_four_films,
     es_person_with_two_films,
     es_person_without_films,

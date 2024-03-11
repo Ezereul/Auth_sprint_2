@@ -3,12 +3,12 @@ from typing import List, Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import UUID4
-from src.api.pagination import Page
-from src.api.validators import check_params
-from src.schemas import PersonSchema
-from src.schemas.films import FilmShort
-from src.services import FilmsService, get_films_service
-from src.services.persons import PersonsService, get_persons_service
+from movies_api.src.api.pagination import Page
+from movies_api.src.api.validators import check_params
+from movies_api.src.schemas import PersonSchema
+from movies_api.src.schemas.films import FilmShort
+from movies_api.src.services import FilmsService, get_films_service
+from movies_api.src.services.persons import PersonsService, get_persons_service
 
 router = APIRouter()
 

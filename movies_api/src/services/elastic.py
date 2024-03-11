@@ -4,8 +4,8 @@ from typing import Optional
 
 from elasticsearch import AsyncElasticsearch, NotFoundError
 from fastapi import Depends
-from src.db.elastic import get_elastic
-from src.models import ElasticModel
+from movies_api.src.db.elastic import get_elastic
+from movies_api.src.models import ElasticModel
 
 
 class ElasticService:

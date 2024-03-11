@@ -2,7 +2,7 @@ import pytest_asyncio
 from redis.asyncio import Redis
 import backoff
 
-from auth.tests.functional.settings import test_base_settings
+from movies_api.tests.functional.settings import test_base_settings
 
 
 @pytest_asyncio.fixture(name='redis_client', scope='session')
