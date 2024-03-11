@@ -15,9 +15,13 @@ from auth.src.db import redis
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    redis.redis = Redis(host=settings.redis.host, port=settings.redis.port, decode_responses=True)
+    redis.redis_tokens = Redis(
+        host=settings.redis.host, port=settings.redis.port, decode_responses=True, db=0)
+    redis.redis_rate_limit = Redis(
+        host=settings.redis.host, port=settings.redis.port, decode_responses=True, db=1)
     yield
-    await redis.redis.close()
+    await redis.redis_tokens.aclose()
+    await redis.redis_rate_limit.aclose()
 
 
 app = FastAPI(
