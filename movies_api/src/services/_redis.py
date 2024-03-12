@@ -6,8 +6,8 @@ from fastapi import Depends
 from orjson import orjson
 from pydantic.json import pydantic_encoder
 from redis.asyncio import Redis
-from src.db._redis import get_redis
-from src.schemas import Schema
+from movies_api.src.db._redis import get_redis
+from movies_api.src.schemas import Schema
 
 
 class RedisService:

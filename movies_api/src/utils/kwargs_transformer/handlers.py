@@ -4,7 +4,7 @@ import abc
 import logging
 from typing import Optional
 
-from src.utils.kwargs_transformer.constraints import SortConstraint, FilterConstraint, SearchConstraint
+from movies_api.src.utils.kwargs_transformer.constraints import SortConstraint, FilterConstraint, SearchConstraint
 
 logger = logging.getLogger(__name__)
 

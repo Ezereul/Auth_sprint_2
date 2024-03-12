@@ -3,7 +3,7 @@ from http import HTTPStatus
 import pytest
 from sqlalchemy import select
 
-from src.models import User
+from auth.src.models import User
 
 
 @pytest.mark.asyncio

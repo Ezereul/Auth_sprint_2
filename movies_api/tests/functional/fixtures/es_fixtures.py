@@ -3,8 +3,8 @@ import pytest_asyncio
 from elasticsearch import AsyncElasticsearch
 from elasticsearch.helpers import async_bulk
 
-from tests.functional import test_index_settings
-from auth.tests.functional.settings import test_base_settings
+from movies_api.tests.functional import test_index_settings
+from movies_api.tests.functional.settings import test_base_settings
 
 
 @pytest_asyncio.fixture(name='es_client', scope='session')

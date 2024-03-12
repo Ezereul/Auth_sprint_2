@@ -2,7 +2,7 @@ import pytest_asyncio
 import aiohttp
 import backoff
 
-from auth.tests.functional.settings import test_base_settings
+from movies_api.tests.functional.settings import test_base_settings
 
 
 @pytest_asyncio.fixture(name='client_session', scope='session')

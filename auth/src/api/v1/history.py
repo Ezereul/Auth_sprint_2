@@ -4,13 +4,13 @@ from async_fastapi_jwt_auth import AuthJWT
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.api.permission import has_permission
-from src.core.constants import RoleAccess
-from src.core.db import get_async_session
-from src.schemas.history import HistorySchema
-from src.schemas.requests import PageParams
-from src.schemas.responses import PagedResponseSchema
-from src.services.history import HistoryService, get_history_service
+from auth.src.api.permission import has_permission
+from auth.src.core.constants import RoleAccess
+from auth.src.core.db import get_async_session
+from auth.src.schemas.history import HistorySchema
+from auth.src.schemas.requests import PageParams
+from auth.src.schemas.responses import PagedResponseSchema
+from auth.src.services.history import HistoryService, get_history_service
 
 router = APIRouter()
 

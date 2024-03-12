@@ -1,7 +1,7 @@
 import pytest_asyncio
 from httpx import AsyncClient
 
-from src.main import app
+from auth.src.main import app
 
 
 @pytest_asyncio.fixture

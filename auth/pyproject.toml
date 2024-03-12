@@ -1,9 +1,9 @@
 [tool.poetry]
-name = "auth-sprint-1"
+name = "auth"
 version = "0.1.0"
 description = ""
 authors = ["Maxim Isaev <isaev_0602@mail.ru>"]
-readme = "README.md"
+#readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"

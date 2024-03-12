@@ -3,8 +3,8 @@ from typing import TypeVar
 from sqlalchemy import Select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.schemas.requests import PageParams
-from src.schemas.responses import PagedResponseSchema
+from auth.src.schemas.requests import PageParams
+from auth.src.schemas.responses import PagedResponseSchema
 
 T = TypeVar("T")
 

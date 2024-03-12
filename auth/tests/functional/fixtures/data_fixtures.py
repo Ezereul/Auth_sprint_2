@@ -1,7 +1,7 @@
 import pytest_asyncio
 
-from src.core.constants import DEFAULT_ROLE_DATA, SUPERUSER_ROLE_DATA
-from src.models import Role, User
+from auth.src.core.constants import DEFAULT_ROLE_DATA, SUPERUSER_ROLE_DATA
+from auth.src.models import Role, User
 
 
 @pytest_asyncio.fixture

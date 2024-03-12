@@ -3,9 +3,9 @@ import pytest_asyncio
 from sqlalchemy import delete
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
-from src.core.db import Base, get_async_session
-from src.main import app
-from src.models import LoginHistory, Role, User
+from auth.src.core.db import Base, get_async_session
+from auth.src.main import app
+from auth.src.models import LoginHistory, Role, User
 from auth.tests.functional.settings import settings
 
 
