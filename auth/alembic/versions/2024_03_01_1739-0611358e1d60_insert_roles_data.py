@@ -10,7 +10,7 @@ from typing import Sequence, Union
 from alembic import op
 from sqlalchemy import table, column, String, Integer, UUID
 
-from src.core.constants import DEFAULT_ROLE_DATA, SUPERUSER_ROLE_DATA
+from auth.src.core.constants import DEFAULT_ROLE_DATA, SUPERUSER_ROLE_DATA
 
 # revision identifiers, used by Alembic.
 revision: str = '0611358e1d60'
