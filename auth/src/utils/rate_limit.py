@@ -2,6 +2,7 @@ import time
 
 from redis.asyncio import Redis
 from async_fastapi_jwt_auth import AuthJWT
+from async_fastapi_jwt_auth.exceptions import AuthJWTException
 from fastapi import Request
 
 
@@ -36,7 +37,7 @@ async def extract_user_id(request: Request) -> str:
         user_id = await Authorize.get_jwt_subject()
         if user_id:
             return f"authenticated:{user_id}"
-    except Exception as e:
+    except AuthJWTException:
         pass
 
     ip_address = request.client.host
