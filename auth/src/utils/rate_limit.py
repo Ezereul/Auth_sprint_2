@@ -34,7 +34,6 @@ async def extract_user_id(request: Request) -> str:
         Authorize = AuthJWT(request)
         await Authorize.jwt_required()
         user_id = await Authorize.get_jwt_subject()
-        print('authenticated')
         if user_id:
             return f"authenticated:{user_id}"
     except Exception as e:
@@ -42,5 +41,4 @@ async def extract_user_id(request: Request) -> str:
 
     ip_address = request.client.host
     user_agent = request.headers.get("user-agent")
-    print('not authenticated')
     return f"ip:{ip_address}:{user_agent}"
