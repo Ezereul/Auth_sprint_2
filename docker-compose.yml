@@ -10,7 +10,7 @@ services:
       - static_volume:/data/static/:ro
     depends_on:
       - movies_admin
-#      - movies_api
+      - movies_api
 #      - auth_api
     ports:
       - "80:80"
@@ -114,12 +114,8 @@ services:
     container_name: movies_api
     expose:
       - ${MOVIES_API_PORT}
-    environment:
-      ES_HOST: ${MOVIES_ES_HOST}
-      ES_PORT: ${MOVIES_ES_PORT}
-      REDIS_HOST: ${MOVIES_REDIS_HOST}
-      REDIS_PORT: ${MOVIES_REDIS_PORT}
-      API_PORT: ${MOVIES_API_PORT}
+    env_file:
+      - .env
     depends_on:
       movies_elasticsearch:
         condition: service_healthy

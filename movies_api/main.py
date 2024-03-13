@@ -17,8 +17,8 @@ setup_logging()
 
 app = FastAPI(
     title=settings.project_name,
-    docs_url='/api/openapi',
-    openapi_url='/api/openapi.json',
+    docs_url='/api/movies/openapi',
+    openapi_url='/api/movies/openapi.json',
     default_response_class=ORJSONResponse,
     description='Information regarding films, genres and people who took part in the films creation',
     version=settings.version
