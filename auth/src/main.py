@@ -31,6 +31,8 @@ app = FastAPI(
     log_config=logger.LOGGING_DICT_CONFIG,
     log_level=settings.logger.level,
     default_response_class=JSONResponse,
+    docs_url='/api/auth/openapi',
+    openapi_url='/api/auth/openapi.json',
 )
 app.add_exception_handler(AuthJWTException, authjwt_exception_handler)
 app.add_exception_handler(ValueError, account_exception_handler)

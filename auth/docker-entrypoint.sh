@@ -4,8 +4,8 @@ set -eo pipefail
 # что-то связанное с поведением bash и glob-паттернами
 shopt -s nullglob
 
-export PATH=/app/.venv/bin:${PATH}
-export PYTHONPATH=/app/.venv/bin:${PATH}
+export PATH=/auth/.venv/bin:${PATH}
+export PYTHONPATH=/:/auth/.venv/bin:${PATH}
 
 alembic upgrade head
 

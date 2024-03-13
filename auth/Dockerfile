@@ -1,7 +1,7 @@
 FROM python:3.12-slim
 
-WORKDIR /app
-ENV PATH /app/.venv/bin/:$PATH
+WORKDIR /auth
+ENV PATH /auth/.venv/bin/:$PATH
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -15,4 +15,4 @@ RUN python -m pip install --no-cache-dir poetry==1.7.1 \
 # list of copied configured via .dockerignore
 COPY .. .
 
-ENTRYPOINT ["bash", "/app/docker-entrypoint.sh"]
+ENTRYPOINT ["bash", "/auth/docker-entrypoint.sh"]
