@@ -24,7 +24,7 @@ RUN mkdir static \
 
 COPY --chown=django:django . .
 
-RUN python manage.py collectstatic --noinput
+RUN poetry run python manage.py collectstatic --noinput
 
 EXPOSE 8000
 
