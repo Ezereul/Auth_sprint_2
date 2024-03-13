@@ -2,7 +2,10 @@
 name = "auth-sprint-1"
 version = "0.1.0"
 description = ""
-authors = ["Maxim Isaev <isaev_0602@mail.ru>"]
+authors = [
+    "Maxim Isaev <isaev_0602@mail.ru>",
+    "Ilya Kabeshov <ilua.kabeshov01@mail.ru>"
+]
 readme = "README.md"
 
 [tool.poetry.dependencies]
