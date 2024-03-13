@@ -1,6 +1,7 @@
 FROM python:3.12-slim
 
 WORKDIR /opt/movies_admin
+
 RUN groupadd -r django && useradd -d /opt/movies_admin -r -g django django
 
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -11,10 +12,7 @@ ENV UWSGI_HARAKIRI 240
 ENV DJANGO_SETTINGS_MODULE 'config.settings'
 ENV PATH /opt/movies_admin/.venv/bin/:$PATH
 
-COPY --chown=django:django poetry.lock poetry.lock
-COPY --chown=django:django pyproject.toml pyproject.toml
-COPY --chown=django:django uwsgi/uwsgi.ini uwsgi.ini
-COPY --chown=django:django entrypoint.sh entrypoint.sh
+COPY --chown=django:django poetry.lock pyproject.toml ./
 
 RUN mkdir static \
     && mkdir media \
