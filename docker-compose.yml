@@ -39,6 +39,8 @@ services:
       discovery.type: single-node
       xpack.security.enabled: false
       http.port: ${MOVIES_ES_PORT}
+    ports:
+      - "9200:9200"
     expose:
       - ${MOVIES_ES_PORT}
     volumes:

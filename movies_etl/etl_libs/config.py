@@ -11,13 +11,13 @@ def get_settings():
 
 
 class PostgresSettings(BaseSettings):
-    db: str
+    database: str
     user: str
     password: str
     host: str
     port: int
 
-    model_config = SettingsConfigDict(env_prefix='PG_', env_file=ENV_FILE, env_file_encoding='utf-8')
+    model_config = SettingsConfigDict(env_prefix='MOVIES_PG_', env_file=ENV_FILE, env_file_encoding='utf-8')
 
 
 class ElasticSettings(BaseSettings):
@@ -25,7 +25,7 @@ class ElasticSettings(BaseSettings):
     port: int
     indexes: list
 
-    model_config = SettingsConfigDict(env_prefix='ES_', env_file=ENV_FILE, env_file_encoding='utf-8')
+    model_config = SettingsConfigDict(env_prefix='MOVIES_ES_', env_file=ENV_FILE, env_file_encoding='utf-8')
 
 
 class LoggerSettings(BaseSettings):
@@ -33,7 +33,7 @@ class LoggerSettings(BaseSettings):
     level: str
     format: str
 
-    model_config = SettingsConfigDict(env_prefix='LOG_', env_file=ENV_FILE, env_file_encoding='utf-8')
+    model_config = SettingsConfigDict(env_prefix='MOVIES_ETL_LOG_', env_file=ENV_FILE, env_file_encoding='utf-8')
 
 
 class Settings(BaseSettings):
@@ -42,4 +42,4 @@ class Settings(BaseSettings):
     logger: LoggerSettings = LoggerSettings()
     interval: int
 
-    model_config = SettingsConfigDict(env_file=ENV_FILE, env_file_encoding='utf-8', extra='ignore')
+    model_config = SettingsConfigDict(env_file=ENV_FILE, env_prefix='MOVIES_ETL_', env_file_encoding='utf-8', extra='ignore')

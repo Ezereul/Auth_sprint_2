@@ -42,7 +42,7 @@ def main():
     )
 
     pg_dsn = {
-        "dbname": settings.postgres.db,
+        "dbname": settings.postgres.database,
         "user": settings.postgres.user,
         "password": settings.postgres.password,
         "host": settings.postgres.host,
