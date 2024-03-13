@@ -5,14 +5,14 @@ from auth.src.api.v1 import account_router, auth_router, history_router, role_ro
 main_router = APIRouter()
 
 main_router.include_router(
-    auth_router, prefix='/auth', tags=['User Authentication']
+    auth_router, prefix='/api/v1/auth', tags=['User Authentication']
 )
 main_router.include_router(
-    history_router, prefix='/history', tags=['Login History']
+    history_router, prefix='/api/v1/history', tags=['Login History']
 )
 main_router.include_router(
-    role_router, prefix='/role', tags=['Roles']
+    role_router, prefix='/api/v1/role', tags=['Roles']
 )
 main_router.include_router(
-    account_router, prefix='/account', tags=['Account']
+    account_router, prefix='/api/v1/account', tags=['Account']
 )

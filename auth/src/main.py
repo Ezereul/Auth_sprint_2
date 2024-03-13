@@ -10,7 +10,11 @@ from auth.src.api.middlewares import rate_limit_middleware
 from auth.src.api.routers import main_router
 from auth.src.core import logger
 from auth.src.core.config import settings
+from auth.src.core.logger import setup_logging
 from auth.src.db import redis
+
+
+setup_logging()
 
 
 @asynccontextmanager
