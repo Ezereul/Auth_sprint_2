@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export DJANGO_SUPERUSER_USERNAME=some_admin
+export DJANGO_SUPERUSER_USERNAME=admin
 export DJANGO_SUPERUSER_PASSWORD=123123
 export DJANGO_SUPERUSER_EMAIL=mail@mail.ru
 

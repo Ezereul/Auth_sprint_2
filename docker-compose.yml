@@ -9,8 +9,9 @@ services:
       - ./configs/confd:/etc/nginx/conf.d:ro
       - static_volume:/data/static/:ro
     depends_on:
-      - movies_api
-      - auth_api
+      - movies_admin
+#      - movies_api
+#      - auth_api
     ports:
       - "80:80"
 
