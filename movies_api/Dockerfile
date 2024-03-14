@@ -33,7 +33,7 @@ FROM base as tests
 
 COPY --from=base /movies_api /movies_api
 COPY tests tests
-ENV PYTHONPATH /movies_api
+
 RUN chmod 774 ./tests/functional/utils/tests_entrypoint.sh
 
 ENTRYPOINT [ "./tests/functional/utils/tests_entrypoint.sh" ]

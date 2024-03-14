@@ -19,11 +19,11 @@ def retrieve_state(file_path: str) -> dict:
 
 
 class TestBaseSettings(BaseSettings):
-    es_host: str = Field('127.0.0.1', env='MOVIES_ES_HOST')
+    es_host: str = Field('movies_elasticsearch', env='MOVIES_ES_HOST')
     es_port: int = Field(9200, env='MOVIES_ES_PORT')
-    redis_host: str = Field('127.0.0.1', env='MOVIES_REDIS_HOST')
+    redis_host: str = Field('movies_redis', env='MOVIES_REDIS_HOST')
     redis_port: int = Field(6379, env='MOVIES_REDIS_PORT')
-    service_host: str = Field('0.0.0.0', env='MOVIES_API_HOST')
+    service_host: str = Field('movies_api', env='MOVIES_API_HOST')
     service_port: int = Field(8000, env='MOVIES_API_PORT')
 
     class Config:
