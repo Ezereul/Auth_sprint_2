@@ -1,6 +1,6 @@
-../.env
-!auth/src
-!auth/alembic
+*
+!/src
+!/alembic
 !docker-entrypoint.sh
 !poetry.lock
 !pyproject.toml
