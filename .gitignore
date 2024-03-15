@@ -105,10 +105,10 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-auth/.env
-.venv
-env/
-venv/
+**/.env
+**/.venv
+**/env/
+**/venv/
 ENV/
 env.bak/
 venv.bak/
@@ -132,7 +132,7 @@ dmypy.json
 .pyre/
 
 # .idea
-.idea
+**/.idea
 /.ruff_cache/
 /setup.cfg
 

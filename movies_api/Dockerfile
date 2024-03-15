@@ -1,7 +1,8 @@
 FROM python:3.10-slim as base
 
-WORKDIR /app
-ENV PATH /app/.venv/bin/:$PATH
+WORKDIR /movies_api
+ENV PATH /movies_api/.venv/bin/:$PATH
+ENV PYTHONPATH /
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -15,7 +16,7 @@ RUN python -m pip install --no-cache-dir poetry==1.7.1 \
 
 FROM base AS prod
 
-COPY --from=base /app /app
+COPY --from=base /movies_api /movies_api
 COPY src ./src
 COPY  main.py .
 
@@ -23,16 +24,16 @@ ENTRYPOINT [ "gunicorn", "main:app", "--worker-class", "uvicorn.workers.UvicornW
 
 FROM base AS dev
 
-COPY --from=base /app /app
+COPY --from=base /movies_api /movies_api
 
 ENTRYPOINT [ "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload" ]
 
 
 FROM base as tests
 
-COPY --from=base /app /app
+COPY --from=base /movies_api /movies_api
 COPY tests tests
-ENV PYTHONPATH /app
+
 RUN chmod 774 ./tests/functional/utils/tests_entrypoint.sh
 
 ENTRYPOINT [ "./tests/functional/utils/tests_entrypoint.sh" ]

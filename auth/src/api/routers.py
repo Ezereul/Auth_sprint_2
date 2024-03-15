@@ -2,7 +2,7 @@ from fastapi import APIRouter
 
 from auth.src.api.v1 import account_router, auth_router, history_router, role_router
 
-main_router = APIRouter()
+main_router = APIRouter(prefix='/api/v1')
 
 main_router.include_router(
     auth_router, prefix='/auth', tags=['User Authentication']

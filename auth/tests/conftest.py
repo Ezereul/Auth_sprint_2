@@ -3,10 +3,10 @@ import asyncio
 import pytest_asyncio
 
 pytest_plugins = [
-    "tests.functional.fixtures.db_fixtures",
-    "tests.functional.fixtures.redis_fixtures",
-    "tests.functional.fixtures.client_fixtures",
-    "tests.functional.fixtures.data_fixtures"
+    "auth.tests.functional.fixtures.db_fixtures",
+    "auth.tests.functional.fixtures.redis_fixtures",
+    "auth.tests.functional.fixtures.client_fixtures",
+    "auth.tests.functional.fixtures.data_fixtures"
 ]
 
 

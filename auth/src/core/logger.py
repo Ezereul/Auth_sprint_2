@@ -1,3 +1,5 @@
+from logging import config
+
 from auth.src.core.config import settings
 
 LOGGING_DICT_CONFIG = {
@@ -52,3 +54,8 @@ LOGGING_DICT_CONFIG = {
         'handlers': settings.logger.default_handlers,
     },
 }
+
+
+def setup_logging():
+    config.dictConfig(LOGGING_DICT_CONFIG)
+

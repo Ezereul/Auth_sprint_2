@@ -1,4 +1,5 @@
 import asyncio
+from logging import getLogger
 
 import backoff
 from elasticsearch import AsyncElasticsearch
@@ -6,25 +7,27 @@ from redis.asyncio import Redis
 
 from movies_api.tests.functional.settings import test_base_settings
 
+logger = getLogger(__name__)
+
 
 @backoff.on_exception(backoff.expo, Exception, max_time=300, max_tries=10)
 async def wait_for_redis() -> None:
-    print("Pinging Redis...")
+    logger.info("Pinging Redis...")
     client = Redis(host=test_base_settings.redis_host, port=test_base_settings.redis_port)
     try:
         await client.ping()
-        print("Redis is up!")
+        logger.info("Redis is up!")
     finally:
         await client.close()
 
 
 @backoff.on_exception(backoff.expo, Exception, max_time=300, max_tries=10)
 async def wait_for_elasticsearch() -> None:
-    print("Pinging Elastic...")
+    logger.info("Pinging Elastic...")
     client = AsyncElasticsearch([{'host': test_base_settings.es_host, 'port': test_base_settings.es_port}])
     try:
         await client.indices.exists(index='ping')
-        print("Elasticsearch is up!")
+        logger.info("Elasticsearch is up!")
     finally:
         await client.close()
 
@@ -35,7 +38,8 @@ async def main():
         wait_for_elasticsearch(),
     )
 
+
 if __name__ == '__main__':
-    print("Waiting for Redis to start...")
-    print("Waiting for Elastic to start...")
+    logger.info("Waiting for Redis to start...")
+    logger.info("Waiting for Elastic to start...")
     asyncio.run(main())

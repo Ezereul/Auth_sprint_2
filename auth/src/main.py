@@ -10,7 +10,11 @@ from auth.src.api.middlewares import rate_limit_middleware
 from auth.src.api.routers import main_router
 from auth.src.core import logger
 from auth.src.core.config import settings
+from auth.src.core.logger import setup_logging
 from auth.src.db import redis
+
+
+setup_logging()
 
 
 @asynccontextmanager
@@ -31,6 +35,8 @@ app = FastAPI(
     log_config=logger.LOGGING_DICT_CONFIG,
     log_level=settings.logger.level,
     default_response_class=JSONResponse,
+    docs_url='/api/auth/openapi',
+    openapi_url='/api/auth/openapi.json',
 )
 app.add_exception_handler(AuthJWTException, authjwt_exception_handler)
 app.add_exception_handler(ValueError, account_exception_handler)
