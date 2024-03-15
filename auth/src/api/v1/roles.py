@@ -3,13 +3,13 @@ from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from auth.src.api.permission import has_permission
-from auth.src.core.constants import RoleAccess
-from auth.src.core.db import get_async_session
-from auth.src.schemas.roles import RoleCRUD, RoleDB
-from auth.src.schemas.user import UserWithRole
-from auth.src.services.roles import RoleService, get_role_service
-from auth.src.services.users import UserService, get_user_service
+from src.api.permission import has_permission
+from src.core.constants import RoleAccess
+from src.core.db import get_async_session
+from src.schemas.roles import RoleCRUD, RoleDB
+from src.schemas.user import UserWithRole
+from src.services.roles import RoleService, get_role_service
+from src.services.users import UserService, get_user_service
 
 router = APIRouter()
 

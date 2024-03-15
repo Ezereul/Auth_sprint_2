@@ -1,4 +1,5 @@
 ../.env
+.venv
 !auth/src
 !auth/alembic
 !docker-entrypoint.sh

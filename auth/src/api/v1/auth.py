@@ -1,15 +1,15 @@
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from auth.src.api.permission import has_permission
-from auth.src.core.constants import RoleAccess
-from auth.src.core.db import get_async_session
-from auth.src.schemas.responses import DetailResponse
-from auth.src.schemas.user import UserCreateOrUpdate, UserDB, UserLogin
-from auth.src.services.authentication import AuthenticationService, get_authentication_service
-from auth.src.services.history import HistoryService, get_history_service
-from auth.src.services.roles import RoleService, get_role_service
-from auth.src.services.users import UserService, get_user_service
+from src.api.permission import has_permission
+from src.core.constants import RoleAccess
+from src.core.db import get_async_session
+from src.schemas.responses import DetailResponse
+from src.schemas.user import UserCreateOrUpdate, UserDB, UserLogin
+from src.services.authentication import AuthenticationService, get_authentication_service
+from src.services.history import HistoryService, get_history_service
+from src.services.roles import RoleService, get_role_service
+from src.services.users import UserService, get_user_service
 
 router = APIRouter()
 

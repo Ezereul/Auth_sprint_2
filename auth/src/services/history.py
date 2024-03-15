@@ -4,10 +4,10 @@ from functools import lru_cache
 from sqlalchemy import desc, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from auth.src.models.history import LoginHistory
-from auth.src.schemas.requests import PageParams
-from auth.src.schemas.responses import PagedResponseSchema
-from auth.src.utils.paginate import paginate_statement
+from src.models.history import LoginHistory
+from src.schemas.requests import PageParams
+from src.schemas.responses import PagedResponseSchema
+from src.utils.paginate import paginate_statement
 
 
 class HistoryService:

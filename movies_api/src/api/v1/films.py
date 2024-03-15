@@ -7,11 +7,12 @@ from movies_api.src.api.pagination import Page
 from movies_api.src.api.validators import check_params
 from movies_api.src.schemas import FilmSchema, FilmShort
 from movies_api.src.services import FilmsService, get_films_service
+from movies_api.src.services.auth import security_jwt
 
 router = APIRouter()
 
 
-@router.get('/', response_model=Page[FilmShort])
+@router.get('/', response_model=Page[FilmShort], dependencies=[Depends(security_jwt)])
 async def list_of_films(
     film_service: FilmsService = Depends(get_films_service),
     sort: str = Query(
@@ -37,7 +38,10 @@ async def list_of_films(
     return Page.create(items=res, total=total, params=params)
 
 
-@router.get('/{film_id}', response_model=FilmSchema, description='Return details about film by UUID')
+@router.get('/{film_id}',
+            response_model=FilmSchema,
+            dependencies=[Depends(security_jwt)],
+            description='Return details about film by UUID')
 async def film_details(film_id: UUID4, film_service: FilmsService = Depends(get_films_service)):
     film = await film_service.get_by_id(str(film_id))
     if not film:
@@ -46,7 +50,7 @@ async def film_details(film_id: UUID4, film_service: FilmsService = Depends(get_
     return FilmSchema.parse_obj(film)
 
 
-@router.get('/search/', response_model=Page[FilmShort])
+@router.get('/search/', response_model=Page[FilmShort], dependencies=[Depends(security_jwt)])
 async def search_films(
     query: Annotated[str, Query('', description='Film title for searching', min_length=1)],
     film_service: FilmsService = Depends(get_films_service),

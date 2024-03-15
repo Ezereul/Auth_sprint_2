@@ -5,7 +5,7 @@ from fastapi import Depends, HTTPException, status
 from pydantic import BaseModel, Field, field_serializer
 from redis.asyncio import Redis
 
-from auth.src.db.redis import get_redis
+from src.db.redis import get_redis
 
 
 class RedisTokenModel(BaseModel):

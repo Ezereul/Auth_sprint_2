@@ -1,1 +1,1 @@
-from auth.src.models import LoginHistory, Role, User
+from src.models import LoginHistory, Role, User

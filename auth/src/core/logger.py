@@ -1,4 +1,4 @@
-from auth.src.core.config import settings
+from src.core.config import settings
 
 LOGGING_DICT_CONFIG = {
     'version': 1,
