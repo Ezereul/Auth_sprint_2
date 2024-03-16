@@ -79,6 +79,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'movies.authorization.CustomBackend',
+]
+
 
 LANGUAGE_CODE = 'ru-RU'
 
