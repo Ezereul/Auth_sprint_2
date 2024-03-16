@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
-from src.core.db import Base
+from auth.src.core.db import Base
 
 
 class Role(Base):

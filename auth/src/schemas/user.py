@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from src.schemas.roles import RoleCRUD
+from auth.src.schemas.roles import RoleCRUD
 
 
 class UserBase(BaseModel):
