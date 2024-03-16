@@ -2,6 +2,7 @@ from datetime import datetime
 import uuid
 from functools import lru_cache
 
+from dateutil.relativedelta import relativedelta
 from sqlalchemy import desc, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -30,10 +31,8 @@ class HistoryService:
         stmt = select(LoginHistory).where(LoginHistory.user_id == user_id)  # noqa
 
         start_date = datetime(year, month, 1)
-        if month == 12:
-            end_date = datetime(year + 1, 1, 1)
-        else:
-            end_date = datetime(year, month + 1, 1)
+        end_date = start_date + relativedelta(months=1)
+
         stmt = stmt.where(LoginHistory.login_time >= start_date, LoginHistory.login_time < end_date)
 
         stmt = stmt.order_by(desc(LoginHistory.login_time))  # noqa
