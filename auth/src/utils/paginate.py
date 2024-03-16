@@ -2,6 +2,7 @@ from typing import TypeVar
 
 from sqlalchemy import Select, func
 from sqlalchemy.ext.asyncio import AsyncSession
+from fastapi.exceptions import HTTPException
 
 from auth.src.schemas.requests import PageParams
 from auth.src.schemas.responses import PagedResponseSchema
@@ -24,6 +25,8 @@ async def paginate_statement(session: AsyncSession, stmt: Select, page_params: P
     :param page_params: A PageParams, containing parameters for page.
     """
     stmt_records_count = await count_records(session, stmt)
+    if stmt_records_count == 0:
+        raise HTTPException(status_code=404, detail='No data for the specified period')
     pages_count = (stmt_records_count - 1) // page_params.size + 1
 
     if page_params.page > pages_count:

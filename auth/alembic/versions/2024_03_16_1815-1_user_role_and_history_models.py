@@ -1,8 +1,8 @@
 """user role and history models
 
-Revision ID: 01
+Revision ID: 1
 Revises: 
-Create Date: 2024-02-29 15:23:15.673472
+Create Date: 2024-03-16 18:15:42.341985
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '01'
+revision: str = '1'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -30,7 +30,7 @@ def upgrade() -> None:
     op.create_table('user',
     sa.Column('username', sa.String(length=50), nullable=False),
     sa.Column('password_hash', sa.String(length=128), nullable=False),
-    sa.Column('role_id', sa.UUID(), nullable=False),
+    sa.Column('role_id', sa.UUID(), nullable=True),
     sa.Column('id', sa.UUID(), nullable=False),
     sa.ForeignKeyConstraint(['role_id'], ['role.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -38,10 +38,11 @@ def upgrade() -> None:
     op.create_index(op.f('ix_user_username'), 'user', ['username'], unique=True)
     op.create_table('loginhistory',
     sa.Column('user_id', sa.UUID(), nullable=False),
-    sa.Column('login_time', sa.DateTime(), nullable=True),
+    sa.Column('login_time', sa.DateTime(), nullable=False),
     sa.Column('id', sa.UUID(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id', 'login_time'),
+    postgresql_partition_by='RANGE (login_time)'
     )
     # ### end Alembic commands ###
 
