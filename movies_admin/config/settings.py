@@ -62,6 +62,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+AUTH_USER_MODEL = 'movies.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

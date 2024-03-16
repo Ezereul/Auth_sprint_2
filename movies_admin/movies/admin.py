@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from movies.models import Filmwork, Genre, GenreFilmwork, Person, PersonFilmwork
+from movies.models import Filmwork, Genre, GenreFilmwork, Person, PersonFilmwork, User
 
 
 class GenreFilmworkInline(admin.TabularInline):
@@ -12,6 +12,11 @@ class PersonFilmworkInline(admin.TabularInline):
     extra = 1
     autocomplete_fields = ["person"]
     fields = ("person", "role")
+
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ("username", )
 
 
 @admin.register(Genre)

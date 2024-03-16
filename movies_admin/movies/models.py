@@ -1,8 +1,47 @@
 import uuid
 
+from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+
+
+class UserManager(BaseUserManager):
+    def create_user(self, username, password=None):
+        if not username:
+            raise ValueError('Имя пользователя не может быть пустым')
+
+        user = self.model(username=username)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, username, password=None):
+        user = self.create_user(username, password=password)
+        user.is_admin = True
+        user.save(using=self._db)
+        return user
+
+
+class User(AbstractBaseUser):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    username = models.CharField(verbose_name=_('username'), max_length=30, unique=True)
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+
+    USERNAME_FIELD = 'username'
+
+    objects = UserManager()
+
+    def __str__(self):
+        return f'{self.username} {self.id}'
+
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return True
 
 
 class TimeStampedMixin(models.Model):
@@ -52,7 +91,7 @@ class Filmwork(TimeStampedMixin, UUIDMixin):
 
     title = models.CharField(_("title"), max_length=255)
     description = models.TextField(_("description"), blank=True)
-    creation_date = models.DateField(_("creation_date"))
+    creation_date = models.DateField(_("creation_date"), blank=True)
     rating = models.FloatField(_("rating"), blank=True, validators=[MinValueValidator(0), MaxValueValidator(100)])
     type = models.CharField(_("type"), choices=Type.choices)
     genres = models.ManyToManyField(Genre, through="GenreFilmwork")
