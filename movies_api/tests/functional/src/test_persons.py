@@ -4,10 +4,12 @@ from redis.asyncio.client import Redis
 
 from movies_api.tests.functional.settings import persons_test_settings
 from movies_api.tests.functional.testdata.elasticsearch_input import (  # type: ignore # isort: skip
+    es_single_person_bulks_valid,
     es_person_with_four_films,
     es_person_with_two_films,
     es_person_without_films,
     es_person_with_inexisting_films,
+    from_dict_to_bulk,
 )
 
 
@@ -71,7 +73,6 @@ async def test_person_cache(
     redis_client: Redis,
     api_make_get_request,
     es_delete_record,
-    from_dict_to_bulk,
     es_write_data,
 ):
     """

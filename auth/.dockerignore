@@ -1,7 +1,7 @@
-../.env
-.venv
-!auth/src
-!auth/alembic
+*
+!/src
+!/tests
+!/alembic
 !docker-entrypoint.sh
 !poetry.lock
 !pyproject.toml
