@@ -22,7 +22,7 @@ class Settings(BaseSettings):
     authjwt_public_key: str = Field(..., env='AUTHJWT_PUBLIC_KEY')
 
     class Config:
-        env_file = '../.env'
+        env_file = '.env'
 
 
 settings = Settings()
