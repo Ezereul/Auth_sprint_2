@@ -8,6 +8,7 @@ from movies_api.src.api.validators import check_params
 from movies_api.src.schemas import PersonSchema
 from movies_api.src.schemas.films import FilmShort
 from movies_api.src.services import FilmsService, get_films_service
+from movies_api.src.services.auth import security_jwt
 from movies_api.src.services.persons import PersonsService, get_persons_service
 
 router = APIRouter()
@@ -19,6 +20,7 @@ router = APIRouter()
     summary='Search for a person',
     description='Full-text person search',
     response_description='List of people',
+    dependencies=[Depends(security_jwt)]
 )
 async def search_persons(
     query: Annotated[str, Query('', description="Person's name for searching", min_length=1)],
@@ -48,6 +50,7 @@ async def search_persons(
     summary='Information about a person',
     description='Search a person by id',
     response_description='Name and filmography',
+    dependencies=[Depends(security_jwt)]
 )
 async def person_details(person_id: UUID4, person_service: PersonsService = Depends(get_persons_service)):
     """
@@ -66,6 +69,7 @@ async def person_details(person_id: UUID4, person_service: PersonsService = Depe
     summary='Filmography information',
     description='Filmography',
     response_description='Name and imdb_rating of films',
+    dependencies=[Depends(security_jwt)]
 )
 async def person_films(
     person_id: UUID4,

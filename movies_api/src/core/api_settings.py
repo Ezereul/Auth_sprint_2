@@ -18,9 +18,11 @@ class Settings(BaseSettings):
     unicorn_error_log_lvl: str = Field('INFO', env='MOVIES_API_UNICORN_ERROR_LOG_LVL')
     unicorn_access_log_lvl: str = Field('INFO', env='MOVIES_API_UNICORN_ACCESS_LOG_LVL')
     root_log_lvl: str = Field('INFO', env='MOVIES_API_ROOT_LOG_LVL')
+    authjwt_algorithm: str = 'RS256'
+    authjwt_public_key: str = Field(..., env='AUTHJWT_PUBLIC_KEY')
 
     class Config:
-        env_file = '../.env'
+        env_file = '.env'
 
 
 settings = Settings()
