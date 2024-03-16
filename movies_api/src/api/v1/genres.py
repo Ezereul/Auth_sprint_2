@@ -5,6 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import UUID4
 from movies_api.src.schemas import GenreSchema
 from movies_api.src.services import GenresService, get_genres_service
+from movies_api.src.services.auth import security_jwt
 
 router = APIRouter()
 
@@ -13,7 +14,8 @@ router = APIRouter()
             response_model=List[GenreSchema],
             summary='All genres',
             description='List of all genres',
-            response_description='List of genres')
+            response_description='List of genres',
+            dependencies=[Depends(security_jwt)])
 async def list_of_genres(genre_service: GenresService = Depends(get_genres_service)):
     """
     Return a list of all genres.
@@ -29,7 +31,8 @@ async def list_of_genres(genre_service: GenresService = Depends(get_genres_servi
             response_model=GenreSchema,
             summary='Genre info',
             description='Search a genre by id',
-            response_description='UUID and name')
+            response_description='UUID and name',
+            dependencies=[Depends(security_jwt)])
 async def genre_details(genre_id: UUID4, genre_service: GenresService = Depends(get_genres_service)):
     """
     Return info about genre by uuid.
