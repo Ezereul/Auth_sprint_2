@@ -82,7 +82,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'movies.authorization.CustomBackend',
+    'movies.authentication.CustomBackend',
 ]
 
 
