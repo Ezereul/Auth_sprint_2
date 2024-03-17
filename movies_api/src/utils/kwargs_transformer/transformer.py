@@ -1,12 +1,6 @@
 import logging
 
-from movies_api.src.utils.kwargs_transformer.handlers import (
-    BodyHandler,
-    PaginationHandler,
-    SortHandler,
-    FiltersHandler,
-    SearchHandler,
-)
+from movies_api.src.utils.kwargs_transformer.handlers import BodyHandler, FiltersHandler, PaginationHandler, SearchHandler, SortHandler
 
 
 class KwargsTransformer:

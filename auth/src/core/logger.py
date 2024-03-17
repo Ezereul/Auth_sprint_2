@@ -58,4 +58,3 @@ LOGGING_DICT_CONFIG = {
 
 def setup_logging():
     config.dictConfig(LOGGING_DICT_CONFIG)
-

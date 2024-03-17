@@ -2,6 +2,7 @@ from functools import lru_cache
 from typing import Optional
 
 from fastapi import Depends
+
 from movies_api.src.models import ElasticModel
 from movies_api.src.schemas import Schema
 from movies_api.src.services._redis import RedisService, get_redis_service

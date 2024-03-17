@@ -3,6 +3,7 @@ from typing import List
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import UUID4
+
 from movies_api.src.schemas import GenreSchema
 from movies_api.src.services import GenresService, get_genres_service
 from movies_api.src.services.auth import security_jwt

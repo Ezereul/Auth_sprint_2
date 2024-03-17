@@ -1,8 +1,9 @@
 from http import HTTPStatus
-from typing import Optional, Annotated
+from typing import Annotated, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import UUID4
+
 from movies_api.src.api.pagination import Page
 from movies_api.src.api.validators import check_params
 from movies_api.src.schemas import FilmSchema, FilmShort

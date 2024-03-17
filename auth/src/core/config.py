@@ -49,10 +49,19 @@ class AuthSettings(BaseSettings):
     model_config = SettingsConfigDict(env_file=ENV_PATH, extra='ignore')
 
 
+class YandexSettings(BaseSettings):
+    auth_url: str
+    client_id: str
+    client_secret: str
+
+    model_config = SettingsConfigDict(env_file=ENV_PATH, extra='ignore', env_prefix='YANDEX_')
+
+
 class Settings(BaseSettings):
     redis: RedisSettings = RedisSettings()
     logger: LoggerSettings = LoggerSettings()
     auth: AuthSettings = AuthSettings()
+    yandex: YandexSettings = YandexSettings()
     database_url: str = 'postgresql+asyncpg://app:11111@localhost:5432/auth'
 
     project_name: str = 'Authorization API'
