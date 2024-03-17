@@ -1,6 +1,7 @@
 from functools import lru_cache
 
 from fastapi import Depends
+
 from movies_api.src.models.genre import Genre
 from movies_api.src.schemas import GenreSchema
 from movies_api.src.services._redis import RedisService, get_redis_service

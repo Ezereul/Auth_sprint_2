@@ -34,5 +34,5 @@ def downgrade() -> None:
     current_date = start_date
     while current_date < end_date:
         partition_name = 'login_history_' + current_date.strftime('%Y_%m')
-        op.execute(f"DROP TABLE IF EXISTS {partition_name};")
+        op.drop_table(partition_name)
         current_date += relativedelta(months=1)

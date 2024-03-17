@@ -1,6 +1,7 @@
 from functools import lru_cache
 
 from fastapi import Depends
+
 from movies_api.src.models.person import Person
 from movies_api.src.schemas import PersonSchema
 from movies_api.src.services._redis import RedisService, get_redis_service

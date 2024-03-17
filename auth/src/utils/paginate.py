@@ -1,5 +1,6 @@
 from typing import TypeVar
 
+from fastapi.exceptions import HTTPException
 from sqlalchemy import Select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi.exceptions import HTTPException

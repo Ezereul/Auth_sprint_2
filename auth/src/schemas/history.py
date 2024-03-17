@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from pydantic import UUID4, Field, ConfigDict
+from pydantic import UUID4, ConfigDict, Field
 from pydantic.main import BaseModel
 
 
