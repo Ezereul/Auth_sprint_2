@@ -311,7 +311,7 @@ CREATE TABLE public.movies_user (
     id uuid NOT NULL,
     username character varying(30) NOT NULL,
     is_active boolean NOT NULL,
-    is_admin boolean NOT NULL
+    is_staff boolean NOT NULL
 );
 
 
@@ -13698,7 +13698,7 @@ COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
 -- Data for Name: movies_user; Type: TABLE DATA; Schema: public; Owner: app
 --
 
-COPY public.movies_user (password, last_login, id, username, is_active, is_admin) FROM stdin;
+COPY public.movies_user (password, last_login, id, username, is_active, is_staff) FROM stdin;
 \.
 
 

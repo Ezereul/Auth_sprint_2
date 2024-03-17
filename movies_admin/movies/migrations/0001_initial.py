@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
                 ('username', models.CharField(max_length=30, unique=True, verbose_name='username')),
                 ('is_active', models.BooleanField(default=True)),
-                ('is_admin', models.BooleanField(default=False)),
+                ('is_staff', models.BooleanField(default=False)),
             ],
             options={
                 'abstract': False,
