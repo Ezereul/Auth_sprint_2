@@ -19,16 +19,19 @@ depends_on: Union[str, Sequence[str], None] = None
 
 
 def upgrade() -> None:
-    superuser_password_hash = pwd_context.hash('11111')
-    superuser_role_id = '7c58fbfd-d77a-4ffa-8245-60e279ffe6b0'
-    # INSERT INTO user ('id', 'username', 'password_hash', 'role_id')
-    # VALUES ('338af451-398e-4bc0-9cde-394917bf1014', 'admin', '$argon2id$v=19$m=65536,t=3,p=4$mzNGyNlbyzknBGDsvRcihA$n2jQzY2ip0XERyddw7K2ypMvOUDGwjJsV2Bbptjf1Gk', '7c58fbfd-d77a-4ffa-8245-60e279ffe6b0');
-    op.execute(
-        r"INSERT INTO user ('id', 'username', 'password_hash', 'role_id') "
-        "VALUES ('338af451-398e-4bc0-9cde-394917bf1014', 'admin', '{}', '{}');"
-        .format(superuser_password_hash, superuser_role_id)
-    )
+    query = (r"INSERT INTO public.user (id, username, password_hash, role_id) "  # noqa
+             r"VALUES ('{id}', '{username}', '{password_hash}', '{role_id}');")
+
+    superuser_password = '11111'
+    superuser_data = {
+        'id': '338af451-398e-4bc0-9cde-394917bf1014',
+        'username': 'admin',
+        'password_hash': pwd_context.hash(superuser_password),
+        'role_id': '7c58fbfd-d77a-4ffa-8245-60e279ffe6b0',
+    }
+
+    op.execute(query.format(**superuser_data))
 
 
 def downgrade() -> None:
-    op.execute(r"DELETE FROM user WHERE id='338af451-398e-4bc0-9cde-394917bf1014';")
+    op.execute(r"DELETE FROM public.user WHERE id='338af451-398e-4bc0-9cde-394917bf1014';")
