@@ -1,6 +1,5 @@
 from enum import IntEnum
 
-
 YANDEX_AUTH_URL = "https://oauth.yandex.ru/authorize?response_type=code&client_id="
 YANDEX_TOKEN_URL = "https://oauth.yandex.ru/token"
 YANDEX_USER_INFO_URL = "https://login.yandex.ru/info"

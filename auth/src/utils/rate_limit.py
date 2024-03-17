@@ -1,10 +1,9 @@
 import time
 
-from redis.asyncio import Redis
 from async_fastapi_jwt_auth import AuthJWT
 from async_fastapi_jwt_auth.exceptions import AuthJWTException
 from fastapi import Request
-
+from redis.asyncio import Redis
 
 REQUEST_LIMIT_PER_MINUTE = 20
 DURATION = 60

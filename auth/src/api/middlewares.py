@@ -3,7 +3,7 @@ from typing import Callable
 from fastapi import Request, Response
 
 from auth.src.db.redis import get_redis_rate_limit
-from auth.src.utils.rate_limit import is_request_allowed, extract_user_id
+from auth.src.utils.rate_limit import extract_user_id, is_request_allowed
 
 
 async def rate_limit_middleware(request: Request, call_next: Callable):

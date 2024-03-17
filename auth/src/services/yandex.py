@@ -1,16 +1,16 @@
 from functools import lru_cache
 
-from sqlalchemy import select, and_
-from sqlalchemy.ext.asyncio import AsyncSession
 import httpx
 from fastapi import HTTPException
+from sqlalchemy import and_, select
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from auth.src.models.social import SocialAccount
-from auth.src.services.users import get_user_service
-from auth.src.services.roles import get_role_service
-from auth.src.utils.random_string import generate_random_string
 from auth.src.core.config import settings
 from auth.src.core.constants import YANDEX_TOKEN_URL, YANDEX_USER_INFO_URL
+from auth.src.models.social import SocialAccount
+from auth.src.services.roles import get_role_service
+from auth.src.services.users import get_user_service
+from auth.src.utils.random_string import generate_random_string
 
 
 class YandexService:
@@ -50,7 +50,6 @@ class YandexService:
 
         return user, True, random_password
 
-
     async def get_user_info(self, code):
         headers = {"Content-Type": "application/x-www-form-urlencoded"}
         data = {
@@ -71,6 +70,7 @@ class YandexService:
             )
 
         return user_info_response.json()
+
 
 @lru_cache
 def get_yandex_service() -> YandexService:

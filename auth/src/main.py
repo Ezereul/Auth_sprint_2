@@ -13,7 +13,6 @@ from auth.src.core.config import settings
 from auth.src.core.logger import setup_logging
 from auth.src.db import redis
 
-
 setup_logging()
 
 

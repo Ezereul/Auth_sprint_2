@@ -1,8 +1,7 @@
 import uuid
 
-from sqlalchemy import UUID, Column, DateTime, ForeignKey, func
+from sqlalchemy import UUID, Column, DateTime, ForeignKey, PrimaryKeyConstraint, func
 from sqlalchemy.orm import relationship
-from sqlalchemy import text, PrimaryKeyConstraint
 
 from auth.src.core.db import Base
 

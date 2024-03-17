@@ -1,15 +1,13 @@
-from fastapi import APIRouter, Query
-from starlette.responses import RedirectResponse
-from fastapi import Depends
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
+from starlette.responses import RedirectResponse
 
-from auth.src.services.yandex import YandexService, get_yandex_service
-from auth.src.services.authentication import get_authentication_service, AuthenticationService
-from auth.src.services.history import HistoryService, get_history_service
-from auth.src.core.db import get_async_session
 from auth.src.core.config import settings
 from auth.src.core.constants import YANDEX_AUTH_URL
-
+from auth.src.core.db import get_async_session
+from auth.src.services.authentication import AuthenticationService, get_authentication_service
+from auth.src.services.history import HistoryService, get_history_service
+from auth.src.services.yandex import YandexService, get_yandex_service
 
 router = APIRouter()
 
