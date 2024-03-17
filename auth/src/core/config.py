@@ -54,7 +54,7 @@ class YandexSettings(BaseSettings):
     client_id: str
     client_secret: str
 
-    model_config = SettingsConfigDict(env_file=ENV_PATH, extra='ignore', env_prefix='YANDEX_')
+    model_config = SettingsConfigDict(env_file=ENV_PATH, extra='ignore', env_prefix='AUTH_YANDEX_')
 
 
 class Settings(BaseSettings):

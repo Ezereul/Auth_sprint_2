@@ -26,7 +26,7 @@ class CustomBackend(BaseBackend):
         token: str = response.cookies.get('access_token_cookie')
         data = decode_token(token)
         user_data = {
-            'username': data.get('sub')[:29],  # добавить username в токен
+            'username': username,
             'id': data.get('sub'),
             'is_staff': check_access_level(data.get('access_level'), RoleAccess.ADMIN),
             'is_active': True

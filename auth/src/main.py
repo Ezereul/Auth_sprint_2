@@ -3,16 +3,19 @@ from contextlib import asynccontextmanager
 from async_fastapi_jwt_auth.exceptions import AuthJWTException
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
+from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from redis.asyncio import Redis
 
 from auth.src.api.errors import account_exception_handler, authjwt_exception_handler
-from auth.src.api.middlewares import rate_limit_middleware
+from auth.src.api.middlewares import rate_limit_middleware, check_x_request_middleware
 from auth.src.api.routers import main_router
+from auth.src.api.tracers import setup_tracing
 from auth.src.core import logger
 from auth.src.core.config import settings
 from auth.src.core.logger import setup_logging
 from auth.src.db import redis
 
+setup_tracing()
 setup_logging()
 
 
@@ -41,7 +44,9 @@ app.add_exception_handler(AuthJWTException, authjwt_exception_handler)
 app.add_exception_handler(ValueError, account_exception_handler)
 app.include_router(main_router)
 app.middleware("http")(rate_limit_middleware)
+app.middleware("http")(check_x_request_middleware)
 
+FastAPIInstrumentor.instrument_app(app)
 
 if __name__ == '__main__':
     import uvicorn
