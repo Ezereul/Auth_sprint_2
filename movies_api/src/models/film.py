@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from pydantic.fields import Field
 
 from movies_api.src.models.genre import Genre
+
 from .base_orjson import BaseOrjsonModel
 
 

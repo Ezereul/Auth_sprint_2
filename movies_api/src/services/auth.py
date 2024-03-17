@@ -2,9 +2,9 @@ import http
 import time
 from typing import Optional
 
-from jose import jwt
 from fastapi import HTTPException, Request
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from jose import jwt
 
 from movies_api.src.core.api_settings import settings
 

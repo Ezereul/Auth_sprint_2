@@ -1,6 +1,7 @@
-from fastapi_pagination.api import AbstractParams, resolve_params
-from fastapi import HTTPException
 from http import HTTPStatus
+
+from fastapi import HTTPException
+from fastapi_pagination.api import AbstractParams, resolve_params
 
 
 def check_params() -> AbstractParams:
