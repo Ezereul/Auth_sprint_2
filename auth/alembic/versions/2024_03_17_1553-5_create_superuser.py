@@ -1,7 +1,7 @@
 """create superuser
 
-Revision ID: 4
-Revises: 3
+Revision ID: 5
+Revises: 4
 Create Date: 2024-03-17 15:53:30.307566
 
 """
@@ -12,8 +12,8 @@ from alembic import op
 from auth.src.models.user import pwd_context
 
 # revision identifiers, used by Alembic.
-revision: str = '4'
-down_revision: Union[str, None] = '3'
+revision: str = '5'
+down_revision: Union[str, None] = '4'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
