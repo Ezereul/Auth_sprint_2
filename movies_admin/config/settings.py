@@ -20,6 +20,8 @@ DEBUG = os.environ.get('DJANGO_DEBUG', False) == 'True'
 
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost']
 
+AUTH_API_LOGIN_URL = f'http://{os.environ.get("AUTH_API_HOST")}:{os.environ.get("AUTH_API_PORT")}/api/v1/auth/login'
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -62,6 +64,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+AUTH_USER_MODEL = 'movies.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -76,6 +79,10 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+    'movies.authentication.CustomBackend',
 ]
 
 
