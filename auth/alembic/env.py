@@ -11,8 +11,8 @@ from alembic import context
 
 sys.path = ['', '..'] + sys.path[1:]
 
-from src.core.db import Base
-from src.core.config import settings
+from auth.src.core.db import Base
+from auth.src.core.config import settings
 
 
 load_dotenv('.env')
