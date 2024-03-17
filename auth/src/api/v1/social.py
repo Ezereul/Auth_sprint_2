@@ -1,21 +1,22 @@
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Query
 from starlette.responses import RedirectResponse
-import httpx
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from auth.src.services.yandex import YandexService, get_yandex_service
+from auth.src.services.authentication import get_authentication_service, AuthenticationService
+from auth.src.services.history import HistoryService, get_history_service
 from auth.src.core.db import get_async_session
+from auth.src.core.config import settings
+from auth.src.core.constants import YANDEX_AUTH_URL
 
 
 router = APIRouter()
 
-CLIENT_ID = 'be6f1cb7d8e442e9bc7a06681c69159a'
-CLIENT_SECRET = '51cc00c7cebe4e9da19182c9fc1f3489'
 
 @router.get("/login")
 async def login_via_yandex():
-    auth_url = f"https://oauth.yandex.ru/authorize?response_type=code&client_id={CLIENT_ID}"
+    auth_url = YANDEX_AUTH_URL + settings.yandex.client_id
     return RedirectResponse(url=auth_url)
 
 
@@ -23,32 +24,22 @@ async def login_via_yandex():
 async def yandex_callback(
         code: str = Query(...),
         yandex_service: YandexService = Depends(get_yandex_service),
-        session: AsyncSession = Depends(get_async_session)
+        session: AsyncSession = Depends(get_async_session),
+        auth_service: AuthenticationService = Depends(get_authentication_service),
+        history_service: HistoryService = Depends(get_history_service)
 ):
-    token_url = "https://oauth.yandex.ru/token"
-    headers = {"Content-Type": "application/x-www-form-urlencoded"}
-    data = {
-        "grant_type": "authorization_code",
-        "code": code,
-        "client_id": CLIENT_ID,
-        "client_secret": CLIENT_SECRET,
-    }
-    async with httpx.AsyncClient() as client:
-        response = await client.post(token_url, headers=headers, data=data)
-    if response.status_code != 200:
-        raise HTTPException(status_code=400, detail="OAuth token exchange failed")
-    tokens = response.json()
-    access_token = tokens.get("access_token")
+    user_info = await yandex_service.get_user_info(code)
+    social_id = user_info.get("id")
+    login = user_info.get("default_email")
 
-    user_info_url = "https://login.yandex.ru/info"
-    headers = {"Authorization": "OAuth " + access_token}
-    async with httpx.AsyncClient() as client:
-        response = await client.post(user_info_url, headers=headers)
-    info = response.json()
-    social_id = info.get("social_id")
-    login = info.get("login")
+    user, is_new_user, random_password = await yandex_service.new(session=session, social_id=social_id, login=login)
+    await history_service.create(session, user.id)
 
-    return await yandex_service.new(session=session, social_id=social_id, login=login)
+    role = await user.awaitable_attrs.role
 
-    # Используйте access_token для запроса данных пользователя через API Яндекса и сохранения в вашей базе данных
+    await auth_service.new_token_pair(subject=str(user.id), claims={'access_level': role.access_level})
 
+    if is_new_user:
+        return user.username, random_password
+
+    return {'detail': 'Successfully login'}
