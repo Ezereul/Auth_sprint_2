@@ -6,7 +6,7 @@ from auth.src.core.db import Base
 
 class SocialAccount(Base):
     user_id = Column(UUID(as_uuid=True), ForeignKey('user.id'), nullable=False)
-    user = relationship("User", backref=backref('social_accounts', lazy=True))
+    user = relationship("User", backref=backref('social_accounts', lazy='dynamic'))
 
     social_id = Column(Text, nullable=False)
     social_name = Column(Text, nullable=False)

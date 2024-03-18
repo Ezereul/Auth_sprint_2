@@ -38,7 +38,7 @@ class YandexService:
 
     async def new(self, session: AsyncSession, social_id: str, login: str):
         if (social_acc := await self.get(session, social_id)) is not None:
-            return await self.user_service.get(session, social_acc.user), False, None
+            return await social_acc.awaitable_attrs.user, False, None
 
         if (user := await self.user_service.get_by_name(session, login)) is not None:
             await self.create(session, user.id, social_id)
