@@ -57,12 +57,21 @@ class YandexSettings(BaseSettings):
     model_config = SettingsConfigDict(env_file=ENV_PATH, extra='ignore', env_prefix='AUTH_YANDEX_')
 
 
+class JaegerSettings(BaseSettings):
+    agent_host_name: str = 'localhost'
+    agent_port: int = 6831
+
+    model_config = SettingsConfigDict(env_file=ENV_PATH, extra='ignore', env_prefix='JAEGER_')
+
+
 class Settings(BaseSettings):
     redis: RedisSettings = RedisSettings()
     logger: LoggerSettings = LoggerSettings()
     auth: AuthSettings = AuthSettings()
     yandex: YandexSettings = YandexSettings()
+    jaeger: JaegerSettings = JaegerSettings()
     database_url: str = 'postgresql+asyncpg://app:11111@localhost:5432/auth'
+    enable_tracing: bool = False
 
     project_name: str = 'Authorization API'
     version: str = '1.0.0'

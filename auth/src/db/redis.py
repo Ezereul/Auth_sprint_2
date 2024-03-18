@@ -1,9 +1,7 @@
-from typing import Optional
-
 from redis.asyncio import Redis
 
-redis_tokens: Optional[Redis] = None
-redis_rate_limit: Optional[Redis] = None
+redis_tokens: Redis | None = None
+redis_rate_limit: Redis | None = None
 
 
 async def get_redis() -> Redis:
