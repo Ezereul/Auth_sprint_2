@@ -63,6 +63,7 @@ class Settings(BaseSettings):
     auth: AuthSettings = AuthSettings()
     yandex: YandexSettings = YandexSettings()
     database_url: str = 'postgresql+asyncpg://app:11111@localhost:5432/auth'
+    enable_tracing: bool = False
 
     project_name: str = 'Authorization API'
     version: str = '1.0.0'

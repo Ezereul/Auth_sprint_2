@@ -15,7 +15,7 @@ from auth.src.core.config import settings
 from auth.src.core.logger import setup_logging
 from auth.src.db import redis
 
-setup_tracing()
+
 setup_logging()
 
 
@@ -44,9 +44,11 @@ app.add_exception_handler(AuthJWTException, authjwt_exception_handler)
 app.add_exception_handler(ValueError, account_exception_handler)
 app.include_router(main_router)
 app.middleware("http")(rate_limit_middleware)
-app.middleware("http")(check_x_request_middleware)
 
-FastAPIInstrumentor.instrument_app(app)
+if settings.enable_tracing:
+    setup_tracing()
+    app.middleware("http")(check_x_request_middleware)
+    FastAPIInstrumentor.instrument_app(app)
 
 if __name__ == '__main__':
     import uvicorn
