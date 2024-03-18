@@ -4,6 +4,7 @@ from sqlalchemy import UUID, Column, ForeignKey, String
 from sqlalchemy.orm import relationship, validates
 
 from auth.src.core.db import Base
+from auth.src.core.constants import MIN_PASSWORD_LENGTH, MIN_USERNAME_LENGTH
 
 pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
@@ -18,7 +19,7 @@ class User(Base):
 
     @validates('username')
     def validate_username(self, key, username):
-        if len(username) < 4:
+        if len(username) < MIN_USERNAME_LENGTH:
             raise ValueError('Username length must be > 3')
         if self.is_correct_password(username):
             raise ValueError('Username cannot be same as password')
@@ -30,7 +31,7 @@ class User(Base):
 
     @password.setter
     def password(self, password: str):
-        if len(password) < 8:
+        if len(password) < MIN_PASSWORD_LENGTH:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Password length must be > 7')
         if password == self.username:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Password cannot be same as Username')

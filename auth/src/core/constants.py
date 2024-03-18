@@ -4,6 +4,9 @@ from auth.src.services.providers import YandexProvider
 from auth.src.core.config import settings
 
 
+MIN_PASSWORD_LENGTH = 8
+MIN_USERNAME_LENGTH = 4
+
 YANDEX_AUTH_URL = "https://oauth.yandex.ru/authorize?response_type=code&client_id="
 YANDEX_TOKEN_URL = "https://oauth.yandex.ru/token"
 YANDEX_USER_INFO_URL = "https://login.yandex.ru/info"
@@ -31,5 +34,4 @@ OAUTH_PROVIDERS = {
         auth_url=YANDEX_AUTH_URL,
         token_url=YANDEX_TOKEN_URL,
     ),
-    # Добавьте других провайдеров здесь
 }
