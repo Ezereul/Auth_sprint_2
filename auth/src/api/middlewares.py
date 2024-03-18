@@ -1,4 +1,5 @@
 from typing import Callable
+from http import HTTPStatus
 
 from fastapi import Request, Response, status
 from fastapi.responses import ORJSONResponse
@@ -13,7 +14,7 @@ async def rate_limit_middleware(request: Request, call_next: Callable):
 
     is_allowed = await is_request_allowed(user_id, redis_instance)
     if not is_allowed:
-        return Response(content="Too Many Requests", status_code=429)
+        return Response(content="Too Many Requests", status_code=HTTPStatus.TOO_MANY_REQUESTS)
 
     response = await call_next(request)
     return response
