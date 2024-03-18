@@ -1,7 +1,7 @@
 from opentelemetry import trace
+from opentelemetry.exporter.jaeger.thrift import JaegerExporter
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
-from opentelemetry.exporter.jaeger.thrift import JaegerExporter
 
 from auth.src.core.config import settings
 
@@ -17,4 +17,3 @@ def setup_tracing() -> None:
         )
     )
     trace.get_tracer_provider().add_span_processor(BatchSpanProcessor(ConsoleSpanExporter()))
-

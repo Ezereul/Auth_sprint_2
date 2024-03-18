@@ -3,8 +3,8 @@ from passlib.context import CryptContext
 from sqlalchemy import UUID, Column, ForeignKey, String
 from sqlalchemy.orm import relationship, validates
 
-from auth.src.core.db import Base
 from auth.src.core.constants import MIN_PASSWORD_LENGTH, MIN_USERNAME_LENGTH
+from auth.src.core.db import Base
 
 pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 

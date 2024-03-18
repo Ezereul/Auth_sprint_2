@@ -1,5 +1,5 @@
-from typing import Callable
 from http import HTTPStatus
+from typing import Callable
 
 from fastapi import Request, Response, status
 from fastapi.responses import ORJSONResponse

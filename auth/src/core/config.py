@@ -56,6 +56,7 @@ class YandexSettings(BaseSettings):
 
     model_config = SettingsConfigDict(env_file=ENV_PATH, extra='ignore', env_prefix='AUTH_YANDEX_')
 
+
 class JaegerSettings(BaseSettings):
     agent_host_name: str = 'localhost'
     agent_port: int = 6831

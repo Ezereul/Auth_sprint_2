@@ -1,4 +1,4 @@
-from enum import Enum, StrEnum
+from enum import Enum
 
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession

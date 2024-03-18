@@ -1,8 +1,7 @@
 from enum import IntEnum
 
-from auth.src.services.providers import YandexProvider
 from auth.src.core.config import settings
-
+from auth.src.services.providers import YandexProvider
 
 MIN_PASSWORD_LENGTH = 8
 MIN_USERNAME_LENGTH = 4

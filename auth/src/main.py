@@ -7,14 +7,13 @@ from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from redis.asyncio import Redis
 
 from auth.src.api.errors import account_exception_handler, authjwt_exception_handler
-from auth.src.api.middlewares import rate_limit_middleware, check_x_request_middleware
+from auth.src.api.middlewares import check_x_request_middleware, rate_limit_middleware
 from auth.src.api.routers import main_router
 from auth.src.api.tracers import setup_tracing
 from auth.src.core import logger
 from auth.src.core.config import settings
 from auth.src.core.logger import setup_logging
 from auth.src.db import redis
-
 
 setup_logging()
 
